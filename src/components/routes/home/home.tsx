@@ -8,6 +8,8 @@ import Error from "../../error/error.tsx";
 
 import User from "../../types/user.tsx";
 
+import classes from "./home.module.css";
+
 const Home = () => {
   const [user, setUser] = useState<UserProps | null>(null);
   const [error, setError] = useState(false);
@@ -41,10 +43,14 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <Search loadUser={loadUser} />
-      {user && <User {...user} />}
-      {error && <Error />}
+    <div className={classes.container}>
+      <div className={classes.searchSection}>
+        <Search loadUser={loadUser} />
+      </div>
+      <div className={classes.resultsSection}>
+        {user && <User {...user} />}
+        {error && <Error />}
+      </div>
     </div>
   );
 };
